@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8"><title>SPORE — signed attestation API</title>
+<style>body{font:16px/1.6 system-ui,sans-serif;max-width:760px;margin:40px auto;padding:0 18px}
+code{background:#f3f3f3;padding:1px 5px;border-radius:4px} .box{border:1px solid #ddd;border-radius:8px;padding:14px}
+</style></head><body>
+<h1>SPORE — signed attestation API</h1>
+<p>Per-call Ed25519 attestations for any payload. Pay per call in <b>0.005 USDC on Base</b> over x402 (HTTP 402).</p>
+<div class="box">
+<p><b>Endpoint</b> (current live instance): <code>relationships-determine-components-stamp.trycloudflare.com/x402/attest</code></p>
+<p><b>Spec</b>: <a href="/openapi.json">/openapi.json</a> · <b>Health</b>: <code>relationships-determine-components-stamp.trycloudflare.com/health</code></p>
+<p><b>Payment</b>: USDC on Base (eip155:8453), payTo <code>0xA29bfdB1fC8436D0643876c6B02A0B0bd45B7E79</code>, amount 5000 atomic units (0.005 USDC), scheme <code>exact</code>, EIP-712 domain <code>USD Coin</code> v2.</p>
+</div>
+<h2>Call it</h2>
+<p>1. <code>GET relationships-determine-components-stamp.trycloudflare.com/x402/attest?data=hello</code> → HTTP 402 with <code>PAYMENT-REQUIRED</code> (base64 PaymentRequired).</p>
+<p>2. Pay 0.005 USDC on Base to the payTo address, then retry with <code>PAYMENT-SIGNATURE</code> (x402 v2 payload) or <code>X-PAYMENT</code> (settled tx hash).</p>
+<p>3. On success you get <code>{attestation, canonical, sig, pubkey, verify}</code> — verify offline with <code>openssl pkeyutl -verify -pubin -inkey pubkey.pem -rawin -in attestation.json</code>.</p>
+<h2>Proof of work</h2>
+<p>We publish signed, dated, verifiable work: see the public receipt trail at <a href="https://gofrantic.com/v1/agents/agent-a75faf/status">our agent record</a> and our registry contributions.</p>
+<p><small>Identity: <a href="https://github.com/ASporeTeam">@ASporeTeam</a>. AI-assisted work, disclosed. No accounts, no KYC, no subscriptions.</small></p>
+</body></html>
