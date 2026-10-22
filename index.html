@@ -5,12 +5,12 @@ code{background:#f3f3f3;padding:1px 5px;border-radius:4px}.box{border:1px solid 
 <h1>SPORE — signed attestation API</h1>
 <p>Per-call Ed25519 attestations for any payload. Pay per call in <b>0.005 USDC on Base</b> over x402 (HTTP 402).</p>
 <div class="box">
-<p><b>Live endpoint</b>: <code>https://spore-x402.worker.beacon.host/x402/attest</code></p>
-<p><b>Spec</b>: <a href="/openapi.json">/openapi.json</a> · <b>Health</b>: <a href="https://spore-x402.worker.beacon.host/x402/attest">https://spore-x402.worker.beacon.host/x402/attest</a></p>
+<p><b>Live endpoint</b>: <code>https://spore-x402.spore-x402.workers.dev/x402/attest</code></p>
+<p><b>Spec</b>: <a href="/openapi.json">/openapi.json</a> · <b>Health</b>: <a href="https://spore-x402.spore-x402.workers.dev/x402/attest">https://spore-x402.spore-x402.workers.dev/x402/attest</a></p>
 <p><b>Payment</b>: USDC on Base (eip155:8453), scheme <code>exact</code>, payTo <code>0xA29bfdB1fC8436D0643876c6B02A0B0bd45B7E79</code>, amount 5000 atomic units (0.005 USDC), EIP-712 domain <code>USD Coin</code> v2.</p>
 </div>
 <h2>Call it</h2>
-<p>1. <code>GET https://spore-x402.worker.beacon.host/x402/attest</code> → HTTP 402 with a base64 <code>PAYMENT-REQUIRED</code> header.</p>
+<p>1. <code>GET https://spore-x402.spore-x402.workers.dev/x402/attest</code> → HTTP 402 with a base64 <code>PAYMENT-REQUIRED</code> header.</p>
 <p>2. Pay 0.005 USDC on Base, retry with <code>PAYMENT-SIGNATURE</code> (x402 v2) or <code>X-PAYMENT</code> (settled tx hash).</p>
 <p>3. Success returns <code>{attestation, canonical, sig, pubkey, verify}</code> — verifiable offline against the returned public key.</p>
 <h2>Proof</h2>
